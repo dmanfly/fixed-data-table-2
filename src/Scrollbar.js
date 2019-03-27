@@ -111,6 +111,7 @@ var Scrollbar = createReactClass({
 
   rootRef(ref) {
     this.root = ref;
+    this.root.addEventListener('wheel',this._wheelHandler.onWheel,{passive:false})
   },
 
   render() /*?object*/ {
@@ -183,7 +184,7 @@ var Scrollbar = createReactClass({
         onTouchEnd={this._onTouchEnd}
         onTouchMove={this._onTouchMove}
         onTouchStart={this._onTouchStart}
-        onWheel={this._wheelHandler.onWheel}
+        // onWheel={this._wheelHandler.onWheel}
         className={mainClassName}
         ref={this.rootRef}
         style={mainStyle}>
@@ -205,6 +206,7 @@ var Scrollbar = createReactClass({
       this._shouldHandleX, // Should hanlde horizontal scroll
       this._shouldHandleY // Should handle vertical scroll
     );
+
     this._initialRender = true;
   },
 
@@ -220,6 +222,9 @@ var Scrollbar = createReactClass({
       this.state.position !== this.props.position) {
       this._didScroll();
     }
+
+
+
     this._initialRender = false;
   },
 

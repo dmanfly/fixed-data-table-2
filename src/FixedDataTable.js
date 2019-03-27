@@ -605,6 +605,7 @@ var FixedDataTable = createReactClass({
   },
 
   _onRef(div) {
+    div.addEventListener('wheel',this._wheelHandler.onWheel,{passive:false})
     if (this.props.stopReactWheelPropagation) {
       this._wheelHandler.setRoot(div);
     }
@@ -808,7 +809,7 @@ var FixedDataTable = createReactClass({
         )}
         tabIndex={tabIndex}
         onKeyDown={this._onKeyDown}
-        onWheel={this._wheelHandler.onWheel}
+        // onWheel={this._wheelHandler.onWheel}
         onTouchStart={this._touchHandler.onTouchStart}
         onTouchEnd={this._touchHandler.onTouchEnd}
         onTouchMove={this._touchHandler.onTouchMove}
