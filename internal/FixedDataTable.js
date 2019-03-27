@@ -622,7 +622,10 @@ var FixedDataTable = (0, _createReactClass2.default)({
     this._reportContentHeight();
   },
   _onRef: function _onRef(div) {
-    div.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    if (div && this.root !== div) {
+      div.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    }
+    this.root = div;
     if (this.props.stopReactWheelPropagation) {
       this._wheelHandler.setRoot(div);
     }

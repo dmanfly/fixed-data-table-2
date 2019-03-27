@@ -124,8 +124,10 @@ var Scrollbar = (0, _createReactClass2.default)({
     this.face = ref;
   },
   rootRef: function rootRef(ref) {
+    if (ref && this.root !== ref) {
+      ref.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    }
     this.root = ref;
-    this.root.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
   },
   render: function render() /*?object*/{
     if (!this.state.scrollable) {

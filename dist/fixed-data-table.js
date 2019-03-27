@@ -1,5 +1,5 @@
 /**
- * FixedDataTable v0.8.20 
+ * FixedDataTable v0.8.21 
  *
  * Copyright Schrodinger, LLC
  * All rights reserved.
@@ -1627,8 +1627,10 @@ var Scrollbar = (0, _createReactClass2.default)({
     this.face = ref;
   },
   rootRef: function rootRef(ref) {
+    if (ref && this.root !== ref) {
+      ref.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    }
     this.root = ref;
-    this.root.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
   },
   render: function render() /*?object*/{
     if (!this.state.scrollable) {
@@ -3919,7 +3921,10 @@ var FixedDataTable = (0, _createReactClass2.default)({
     this._reportContentHeight();
   },
   _onRef: function _onRef(div) {
-    div.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    if (div && this.root !== div) {
+      div.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    }
+    this.root = div;
     if (this.props.stopReactWheelPropagation) {
       this._wheelHandler.setRoot(div);
     }

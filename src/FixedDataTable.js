@@ -605,7 +605,10 @@ var FixedDataTable = createReactClass({
   },
 
   _onRef(div) {
-    div.addEventListener('wheel',this._wheelHandler.onWheel,{passive:false})
+    if (div && this.root!==div){
+      div.addEventListener('wheel', this._wheelHandler.onWheel, { passive: false });
+    }
+    this.root=div;
     if (this.props.stopReactWheelPropagation) {
       this._wheelHandler.setRoot(div);
     }
